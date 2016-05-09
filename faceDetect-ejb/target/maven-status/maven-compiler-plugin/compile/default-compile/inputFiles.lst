@@ -1,0 +1,16 @@
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/statelessBeans/ServiceInterface.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/dto/DtoDetection.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/Eyes.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/InternalDto.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/ImageCoordinatorPooling/ImageCoordinatorFactory.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/Detector.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/PercentageCalculator.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/interfaces/FaceDetectionInterface.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/dto/Rect.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/dto/Size.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/ImageCoordinatorPooling/ImageCoordinatorPool.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/EyesComparator.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/ImageCoordinatorPooling/ImageCoordinatorPooled.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/Image.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/model/ImageCoordinator.java
+/home/ebarba/workspace_mars/faceDetect/faceDetect-ejb/src/main/java/net/wabum/facedetection/dto/Point.java
