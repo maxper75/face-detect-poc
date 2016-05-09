@@ -10,7 +10,7 @@ public class InternalDto {
 	private Rect face;
 	private double percentage;
 	private int faceNumber;
-	
+
 	public DtoDetection convertToSerializable() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException{
 		net.wabum.facedetection.dto.Rect rect = new net.wabum.facedetection.dto.Rect(face.x, face.y, face.width, face.height);
 		DtoDetection dto = new DtoDetection();

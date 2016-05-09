@@ -1,12 +1,12 @@
 package net.wabum.facedetection.model;
-//vresione 1
+//version 1.1
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 public class Image {
@@ -35,43 +35,28 @@ public class Image {
 		for (Rect rect : faces) {
 			if (bigger == null || rect.size().area() > bigger.size().area())
 				bigger = rect;
-			if ((calc.eyesInsideAFace(rect, eyes) > 0) && (moreEif == null || calc.eyesInsideAFace(rect, eyes) > calc.eyesInsideAFace(moreEif, eyes))) {
+			if ((calc.eyesInsideAFace(rect, eyes) > 0) && (moreEif == null || calc.eyesInsideAFace(rect, eyes) > calc.eyesInsideAFace(moreEif, eyes))) 
 				moreEif = rect;
-			}
 		}
-		if (moreEif != null) {
-			toRet = moreEif;
-		}
-		else {
-			toRet = bigger;
-		}
+		toRet = (moreEif != null) ? moreEif : bigger; 
 		return toRet;
 	}
 
 	private Eyes getBestEyes(){
-		List<Rect> eyesLs = new ArrayList<Rect>();
-		Rect primo;
-		Rect secondo;
-		Rect prec;
-		Eyes ret = null;
-		for (Rect rect : eyes) {
-			eyesLs.add(rect);
-		}
-		// il sort non funziona ma non sai perchè l'hai messo SE QUALCOSA NON DOVESSE FUNZIONARE GUARDA QUI
-		
-		//eyesLs.sort(new EyesComparator());
-		primo = eyesLs.get(0);
-		secondo = eyesLs.get(1);
-		prec = new Rect(0, 0, 0, 0);
-		for (Rect rect : eyesLs) {
-			if (Math.abs(rect.area() - prec.area()) < Math.abs(primo.area() - secondo.area())){
-				primo = prec;
+		List<Rect> eyesList = new ArrayList<Rect>(Arrays.asList(this.eyes));
+		Rect primo = eyesList.get(0);
+		Rect secondo = eyesList.get(1);
+		Rect precedente = new Rect(0, 0, 0, 0);
+		Eyes bestEyes;
+		for (Rect rect : eyesList) {
+			if (Math.abs(rect.area() - precedente.area()) < Math.abs(primo.area() - secondo.area())){
+				primo = precedente;
 				secondo = rect;
 			}
-			prec = rect;
+			precedente = rect;
 		}
-		ret = new Eyes(primo, secondo);
-		return ret;
+		bestEyes = new Eyes(primo, secondo);
+		return bestEyes;
 	}
 
 	public Eyes getEyes(){
@@ -86,9 +71,8 @@ public class Image {
 	}
 	
 	public void release(){
-		if (this.imageM != null) {
+		if (this.imageM != null)
 			this.imageM.release();
-		}
 	}
 
 	public boolean eyesFound(){
@@ -111,43 +95,5 @@ public class Image {
 			rot.release();
 		}
 		return dest;
-	}
-	
-	public Mat facesMarker(){
-		Mat imgRet = this.imageM.clone();
-		for (Rect rect : faces) {
-			Imgproc.rectangle(imgRet, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
-		}
-		return imgRet;
-	}
-
-	public Mat bestFaceMarker(){
-		Mat imgRet = null;
-		if(this.faces.length > 0){
-			Rect rect = this.getBestFace();
-			imgRet = this.imageM.clone();
-			Imgproc.rectangle(imgRet, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
-		}
-		return imgRet;
-	}
-	
-	public Mat eyesMarker(){
-		Mat toRet = this.imageM.clone();
-		if (eyes.length > 0){
-			for (Rect eyes : eyes) {
-				Imgproc.rectangle(toRet, new Point(eyes.x, eyes.y), new Point(eyes.x + eyes.width, eyes.y + eyes.height), new Scalar(0, 255, 0));
-			}
-		}
-		return toRet;
-	}
-	
-	public Mat	bestEyesMarker(){
-		Mat toRet = this.imageM.clone();
-		if (this.getBestEyes() != null) {
-			for (Rect eyes : this.getBestEyes().getEyes()) {
-				Imgproc.rectangle(toRet, new Point(eyes.x, eyes.y), new Point(eyes.x + eyes.width, eyes.y + eyes.height), new Scalar(0, 255, 0));
-			}
-		}
-		return toRet;
 	}
 }

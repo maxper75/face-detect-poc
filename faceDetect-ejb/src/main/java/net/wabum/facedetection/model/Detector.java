@@ -1,5 +1,5 @@
 package net.wabum.facedetection.model;
-// vresione 1
+// version 1.1
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -10,9 +10,8 @@ public class Detector {
 	private Mat image;
 	private String haarcasc;
 	private boolean objectFound;
-	private Rect[] object;
+	private Rect[] objects;
 	private CascadeClassifier objectDetector;
-
 	
 	public Detector(){
 		this.objectFound = false;
@@ -26,9 +25,9 @@ public class Detector {
 
 	public void detectObj(){
 			MatOfRect objectDetections = new MatOfRect();
-			this.getObjectDetector().detectMultiScale(image,objectDetections);
-			this.object = objectDetections.toArray();
-			this.objectFound = object.length > 0;
+			this.getObjectDetector().detectMultiScale(image, objectDetections);
+			this.objects = objectDetections.toArray();
+			this.objectFound = objects.length > 0;
 			objectDetections.release();
 	}
 	
@@ -41,8 +40,8 @@ public class Detector {
 		return this.objectFound;
 	}
 
-	public Rect[] getObject(){
-		return this.object;
+	public Rect[] getObjects(){
+		return this.objects;
 	}
 
 	public Mat getImage(){

@@ -21,19 +21,6 @@ public class ServiceInterface implements FaceDetectionInterface{
 	public ServiceInterface(){}
 
 	/**
-	 * 
-	 * @param input full path to input image
-	 * @param output full path of processed image
-	 * @throws Exception missing available object in the pool
-	 */
-	public void detect(String input, String output) throws Exception{
-		System.out.println(input);
-		ImageCoordinator coord = ImageCoordinatorPool.getInstance().borrowObject();
-		coord.setImage(read(input));
-		write(output, coord.detect());
-	}
-	
-	/**
 	 * @param path : full path to input image
 	 * @return DtoDetection : data transfer object containing Face, percentage of face found and number of faces found 
 	 */
@@ -57,8 +44,8 @@ public class ServiceInterface implements FaceDetectionInterface{
 		return Imgcodecs.imread(path);
 	}
 
-	private void write(String outputPath, Mat img){
-		Imgcodecs.imwrite(outputPath, img);
-	}
+//	private void write(String outputPath, Mat img){
+//		Imgcodecs.imwrite(outputPath, img);
+//	}
 
 }
