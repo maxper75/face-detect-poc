@@ -33,5 +33,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/ssd-data/ebarba/src/wildfly-8.2.0.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
